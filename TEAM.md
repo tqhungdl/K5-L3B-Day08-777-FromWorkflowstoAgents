@@ -25,7 +25,7 @@ Gợi ý chia vai:
 
 | Người | Vai | Commit | Test đã thêm hoặc sửa |
 | --- | --- | --- | --- |
-| | | | |
+| Nguyễn Thành Nam (2A202603934) | Orchestrator + handoff (shape C) | `5be3a3a` orchestrator.py; `66a5efa` test_orchestrator_boundary.py | `src/tests/test_orchestrator_boundary.py` (24 test) |
 
 ## Cá nhân
 
