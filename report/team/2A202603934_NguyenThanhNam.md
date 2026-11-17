@@ -44,7 +44,7 @@ Chạy trong `src/`, Python 3.12.16 (venv tạo bằng `uv`):
 
 - `python -m pytest -q -m student -o addopts= -k orchestrator` → **62 passed** (T01–T14, gồm T11, T12).
 - `python -m pytest -q tests/test_orchestrator_boundary.py` → **24 passed**.
-- `python -m pytest -q` (cổng host) → **98 passed**, 248 deselected.
+- `python -m pytest -q` (cổng host) → **109 passed**, 248 deselected tại commit `d1ab093` (lúc viết báo cáo ở commit `c043c7b` là 98 passed; 11 test tăng thêm là `test_workflow_safety.py` của shape A).
 - Trace mẫu `R-orchestrator-C-014-s11` (T14): 6 event `claim`, `handoff`, `investigator`, `quote`, `host`, `decision`; quote 150.000, ledger 120.000 vì host trừ 30.000 đã hoàn.
 - Tự kiểm shape C trên `student_drop/` (40 claim × 5 seed, không nhãn nên không có pass rate):
   `python -m lab8.benchmark --shapes orchestrator --cases <student_drop>/hidden_claims.jsonl --world <student_drop>/hidden_world_state.json --out <file tạm>`
