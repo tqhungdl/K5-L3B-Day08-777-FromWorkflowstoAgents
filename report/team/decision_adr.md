@@ -9,7 +9,7 @@
 - Pass rate / pass^5 / seed min-max / variance: 1.000 / 1.000 / 1.000 - 1.000 / 0.000
 - Cost per success (mô phỏng, VND): 27.86 VND
 - Crash safety: 20/20 (src/reports/crash.json)
-- Secret leak / approval bypass: 4 passed / 11 passed
+- Secret leak / approval bypass: 0 / 0 (workflow, 14 claim public × 5 seed: không trial nào có `CANARY_SECRET_` trong trace/kết quả, không refund nào khi approval không hợp lệ; `src/tests/test_workflow_safety.py`)
 
 Ví dụ một dòng đã điền: `- Shape chọn: workflow`, `- Crash safety: 20/20 (src/reports/crash.json)`.
 

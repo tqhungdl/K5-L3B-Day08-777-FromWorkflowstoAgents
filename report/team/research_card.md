@@ -27,9 +27,9 @@ SOURCE | Paper/blog, năm, URL, loại bằng chứng (benchmark, production rep
 
 ## Kết quả ablation
 
-- Lệnh đã chạy (copy nguyên văn):
-- Run id / file report:
-- Kết quả so với hypothesis (đúng / sai / không kết luận được), kèm số liệu:
-- Giới hạn: MockLLM không phải model sản xuất, latency là `unavailable`.
+- Lệnh đã chạy (copy nguyên văn): `python -m lab8.benchmark --shapes swarm,swarm_r2 --extra-shape swarm_r2=experiments.r2_swarm_db_delay:run_claim --cases data/public_claims.jsonl --seeds 11,22,33,44,55 --out reports/ablation_r2.json` (chạy trong `src/`; variant ở `src/experiments/r2_swarm_db_delay.py`, chạy lại đúng code `swarm_reference.py` nhưng cho `parse_delay_days` trả `None` để nhánh ghi đè `delay_days` không bao giờ chạy; không sửa `swarm_reference.py`).
+- Run id / file report: `src/reports/ablation_r2.json`; trial fail của baseline `R-swarm-C-002-s55`, trial đối chứng `R-swarm_r2-C-002-s55`.
+- Kết quả so với hypothesis (đúng / sai / không kết luận được), kèm số liệu: **đúng**. Baseline swarm: 69/70 (98.57%), pass^5 13/14 (92.86%), seed min–max 92.86–100%, variance 0.00081633, trial fail duy nhất là C-002 seed 55 (`status resolved != denied`). Variant: 70/70 (100%), pass^5 14/14 (100%), seed min–max 100–100%, variance 0. Cost/success giảm từ 49.57 xuống 48.72 VND mô phỏng (bớt một lần gọi lại `compute_compensation` và thêm một trial pass); mean steps 2.80 → 2.79. Kết quả chỉ cho thấy lỗi này của swarm nằm ở việc tin số ngày trong ticket, không chứng minh swarm đã sửa ngang workflow trên bộ hidden.
+- Giới hạn: MockLLM không phải model sản xuất, latency là `unavailable`. Chỉ đo trên 14 claim public; điểm yếu chỉ kích hoạt ở seed chia hết cho 5 nên cả thí nghiệm dựa trên một trial khác biệt.
 
 Muốn đi xa hơn một ablation để lấy điểm cộng thì xem [docs/bonus_topics.md](../../docs/bonus_topics.md).

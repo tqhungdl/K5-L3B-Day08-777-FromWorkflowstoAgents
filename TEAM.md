@@ -2,10 +2,10 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm:
-- Lớp: L3A
-- Repo nhóm: `K5-L3A-DAY08-TenNhom-FromWorkflowsToAgents` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt:
+- Tên nhóm: 777
+- Lớp: L3B
+- Repo nhóm: `K5-L3B-Day08-777-FromWorkflowstoAgents` (xem [SUBMISSION.md](SUBMISSION.md))
+- URL repo, nhánh nộp, commit chốt: https://github.com/tqhungdl/K5-L3B-Day08-777-FromWorkflowstoAgents, nhánh `main`, commit chốt:
 
 ## Thành viên
 
@@ -68,6 +68,7 @@ Sao chép mục dưới đây cho từng thành viên.
 
 - `5be3a3a`: viết `orchestrator.py`. Orchestrator đọc claim qua `get_claim_view`, dựng handoff bằng `make_handoff` (`facts` rỗng, chỉ tool đọc), investigator chạy qua `run_readonly_investigators`, tiền do `compute_compensation` tính, chỉ orchestrator gọi `durability.issue_refund` với quote đầy đủ và `crash_at`.
 - `66a5efa`: thêm `src/tests/test_orchestrator_boundary.py` (24 test): cổng approval (thiếu, thu hồi, hết hạn, mượn của claim khác), sai principal, ticket injection, handoff chỉ có tool đọc, trace không lộ secret/PII trên 14 claim public, crash ở 3 điểm rồi chạy lại vẫn một refund.
+- Rà soát bài nộp của nhóm theo rubric và template; kiểm tra lại phần ablation R2 (`src/reports/ablation_r2.json`).
 
 ### Bằng chứng
 

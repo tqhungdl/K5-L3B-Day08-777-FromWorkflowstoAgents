@@ -66,7 +66,6 @@ Quyết định kiến trúc và lý do: xem `report/team/decision_adr.md`. Phi�
 
 Lỗi gặp phải (kèm lệnh, output hoặc ảnh chụp) và cách nhóm xử lý.
 
-...
 #### Shape A - Workflow
 
 Khi mới hoàn thành CP2, test workflow có 61 passed và 1 failed tại T12 với thông báo `crash did not fire`. Nguyên nhân là workflow chưa truyền `crash_at` xuống `issue_refund`, nên tình huống crash không được kích hoạt. Sau khi bổ sung tham số này ở CP3 và để `InjectedCrash` truyền ra ngoài, chạy lại `python -m pytest -q -m student -o addopts= -k workflow` đạt 62 passed.
@@ -93,14 +92,25 @@ Chi tiết đóng góp của từng thành viên nằm trong `TEAM.md` (bảng �
 
 - Đặng Nhật Huy (2A202603822): shape B single `src/lab8/shapes/single.py`; test `src/tests/test_single_shape.py` (5 nhóm test). Commit hash: 0970390.
 
-- Nguyễn Thành Nam (2A202603934): shape C orchestrator `src/lab8/shapes/orchestrator.py` (commit `5be3a3a`); test `src/tests/test_orchestrator_boundary.py` (commit `66a5efa`).
+- Nguyễn Thành Nam (2A202603934): shape C orchestrator `src/lab8/shapes/orchestrator.py` (commit `5be3a3a`); test `src/tests/test_orchestrator_boundary.py` (commit `66a5efa`); rà soát bài nộp và kiểm tra lại phần ablation R2.
 
 ## 7. Hạn chế và hướng cải thiện
 
 MockLLM không phải model sản xuất; latency là `unavailable`.
 
-Workflow đã qua test public và kiểm tra an toàn CP4; chưa có benchmark chính thức để chọn kiến trúc cuối cùng hoặc kết luận về hidden pass rate. Crash suite 20/20 không chứng minh tất cả shape đã hoàn thành.
+Giới hạn của nhóm:
+
+- Quyết định chọn workflow dựa trên benchmark 14 claim public × 5 seed (`src/reports/benchmark.json`). Trên bộ này workflow, single và orchestrator cùng đạt 70/70, nên chênh lệch chỉ nằm ở cost/success và số bước; bộ public chưa đủ để phân biệt độ chính xác giữa ba shape.
+- Nhóm chưa có kết quả tự kiểm của workflow trên `student_drop/`, nên chưa kết luận được workflow có vượt ngưỡng pass rate hidden ≥ 0.75 hay không.
+- Crash suite `src/reports/crash.json` (20/20) chủ yếu kiểm host và swarm; độ an toàn khi crash của từng shape nhóm viết được kiểm thêm bằng T11, T12 và test riêng (`test_workflow_safety.py`, `test_single_shape.py`, `test_orchestrator_boundary.py`).
+- Cost là giá mô phỏng theo `config/pricing.yaml`, không phải hóa đơn API.
+
+Điều kiện làm kết luận thay đổi:
+
+- Workflow đạt pass rate hidden < 0.75 trên 40 claim × 5 seed.
+- Xuất hiện loại claim cần điều tra song song hoặc nhiều nguồn dữ liệu mà luồng cố định của workflow không xử lý được, trong khi orchestrator xử lý đúng với chi phí chấp nhận được.
 
 ## 8. Tài liệu tham khảo
 
-...
+- Cemri M. và cộng sự (2025). *Why Do Multi-Agent LLM Systems Fail?* NeurIPS 2025, Datasets and Benchmarks Track. https://proceedings.neurips.cc/paper_files/paper/2025/file/b1041e52d3be19f0a9bc491657488e4a-Paper-Datasets_and_Benchmarks_Track.pdf (dùng cho research card R2 và ablation `src/reports/ablation_r2.json`).
+- Tài liệu của đề: `docs/business_rules.md`, `docs/contracts.md`, `docs/architecture.md`, `docs/metrics.md`.

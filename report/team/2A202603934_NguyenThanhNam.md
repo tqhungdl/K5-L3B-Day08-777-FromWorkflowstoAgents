@@ -37,6 +37,8 @@ Shape C `orchestrator` (orchestrator + investigator chỉ đọc) trong `src/lab
   - Không ghi ticket vào trace, chỉ ghi `has_order_id`.
   - Bắt `InjectedCrash` chỉ để ghi trace rồi `raise` lại, không nuốt lỗi.
   - Không tự trừ phần đã hoàn: `lookup_refund_history` chỉ để ghi vào trace, host mới là bên trừ.
+- **Rà soát bài nộp của nhóm** theo rubric và template, sửa các chỗ thiếu/sai trong ADR, `TEAM.md`, `group_report.md`.
+- **Kiểm tra lại phần ablation R2:** chạy lại và ghi kết quả vào research card (`src/experiments/r2_swarm_db_delay.py`, `src/reports/ablation_r2.json`).
 
 ## 4. Bằng chứng
 
@@ -52,7 +54,7 @@ Chạy trong `src/`, Python 3.12.16 (venv tạo bằng `uv`):
 
 ## 5. Công cụ AI đã dùng
 
-- **Claude Code** : tóm tắt đề và checkpoint, hỗ trợ viết bản nháp `orchestrator.py`, `test_orchestrator_boundary.py`.
+- **Claude Code** : tóm tắt đề và checkpoint, hỗ trợ viết bản nháp `orchestrator.py`, `test_orchestrator_boundary.py`; rà soát bài nộp của nhóm.
 - **Cách tự kiểm tra:**
   - Tự chạy lại test student, test riêng và cổng host, đọc output thật.
   - Tự chạy `python -m lab8.run --shape orchestrator ... --crash-at after_effect_before_checkpoint` rồi chạy lại trên cùng db, kiểm `refund_effects` có 1 phần tử và `committed_audit_count` = 1.
