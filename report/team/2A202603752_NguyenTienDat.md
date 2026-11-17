@@ -4,7 +4,7 @@
 
 - Họ tên: Nguyễn Tiến Đạt
 - MSSV: 2A202603752
-- Email:
+- Email: nguyentiendatqb126@gmail.com
 - GitHub: chesschillchill
 
 ## 2. Phần việc phụ trách
