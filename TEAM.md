@@ -14,7 +14,7 @@
 |   1 | Nguyễn Thành Nam | 2A202603934 | ishodajo@gmail.com           | Ishodayo        | Orchestrator + handoff (shape C)                    |
 |   2 | Nguyễn Tiến Đạt  | 2A202603752 | nguyentiendatqb126@gmail.com | chesschillchill | Workflow (shape A) + kiểm tra an toàn               |
 |   3 | Đặng Nhật Huy    | 2A202603822 | 26ai.huydn@vinuni.edu.vn     | huydn8816       | Single agent (shape B) + test                       |
-|   4 | Trần Quang Hưng  | 2A202603767 |                              | tqhungdl        | Tổng hợp báo cáo, phân tích benchmark, decision ADR |
+|   4 | Trần Quang Hưng  | 2A202603767 | tqhungdl0206@gmail.com       | tqhungdl        | Tổng hợp báo cáo, phân tích benchmark, decision ADR |
 
 Gợi ý chia vai:
 
@@ -29,6 +29,8 @@ Gợi ý chia vai:
 | ------------------------------ | ---------------------------------------------- | ---------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | Nguyễn Thành Nam (2A202603934) | Orchestrator + handoff (shape C)               | `5be3a3a` orchestrator.py; `66a5efa` test_orchestrator_boundary.py                       | `src/tests/test_orchestrator_boundary.py` (24 test) |
 | Nguyễn Tiến Đạt (2A202603752)  | Workflow (shape A), CP2–CP4 + kiểm tra an toàn | `4ca802c` workflow.py (CP2–CP3); `b389b75` test_workflow_safety.py và crash report (CP4) | `src/tests/test_workflow_safety.py` (11 test)       |
+| Đặng Nhật Huy | Shape B `single` (`src/lab8/shapes/single.py`) | `0970390` (nhánh `feat/shape-b-single`) | `src/tests/test_single_shape.py` (5 nhóm test) |
+| Trần Quang Hưng (2A202603767) | Tổng hợp báo cáo nhóm, phân tích benchmark và decision ADR | `965475c` tổng hợp báo cáo, kết quả benchmark và decision ADR |  |
 
 ## Cá nhân
 
@@ -91,16 +93,38 @@ Sao chép mục dưới đây cho từng thành viên.
 - T11 (`test_t11_retry_keeps_one_refund`) và T12 (`test_t12_crash_before_checkpoint_does_not_double_pay`) đã pass: chạy lại và crash rồi resume vẫn giữ một refund và một audit `refund_committed`.
 - `python -m lab8.crash_test --count 20 --out reports/crash.json` → `crash_safety = 20/20`. Suite này chủ yếu kiểm host và swarm; workflow được kiểm trực tiếp qua 11 test riêng.
 
-## 2A202603767_Trần Quang Hưng
+## 2A202603822_DangNhatHuy
 
 ### Phần việc phụ trách
 
--
+- Shape B `single` (một agent ReAct) trong `src/lab8/shapes/single.py`, và test riêng `src/tests/test_single_shape.py`.
 
 ### Đóng góp cụ thể
 
--
+- Commit `0970390` (nhánh `feat/shape-b-single`): code shape B và test riêng.
+- Test: 5 nhóm test trong `src/tests/test_single_shape.py` (ticket không đổi số tiền; trace không chứa ticket hay secret, 5 seed; số model/tool call cố định; thiếu `order_id` dừng sớm; crash rồi resume giữ một refund).
+- Quyết định kỹ thuật: `decide` không đọc ticket; shape truyền quote đầy đủ vào `issue_refund` và để host trừ phần đã hoàn; trace chỉ ghi các field đã qua allowlist.
 
 ### Bằng chứng
 
--
+- `pytest -q -m student -o addopts= -k "single and not workflow and not orchestrator and not swarm"` → 62 passed.
+- `pytest -q tests/test_single_shape.py` → 20 passed.
+- Báo cáo cá nhân: `report/team/2A202603822_DangNhatHuy.md`.
+
+## 2A202603767_TranQuangHung
+
+### Phần việc phụ trách
+
+- Tổng hợp báo cáo nhóm, phân tích benchmark bốn shape và lập decision ADR; hoàn thiện research card R2, thực hiện ablation và tổng hợp bằng chứng kiểm thử.
+
+### Đóng góp cụ thể
+
+- Tổng hợp phần giải pháp của các thành viên vào `report/team/group_report.md`; lập bảng kết quả từ `src/reports/benchmark.json`, so sánh pass rate, pass^5, seed variance, cost/success và mean/p95 steps.
+- Lập luận chọn workflow trong `report/team/decision_adr.md` dựa trên kết quả public: 70/70 trial pass, chi phí mô phỏng 27.86 VND/success và 2.79 bước trung bình; phân biệt kết quả public với khả năng đáp ứng bộ hidden.
+- Hoàn thiện `report/team/research_card.md` theo R2 và paper MAST (NeurIPS 2025), phân biệt kết luận của nguồn, cách phân loại lỗi của nhóm, hypothesis và kết quả thực nghiệm.
+- Chạy benchmark đối chứng bằng cùng evaluator trên 14 claim và 5 seed, tạo `src/reports/ablation_r2.json`; ghi kết quả trước–sau và giới hạn nghiên cứu vào research card. Commit `965475c` chứa báo cáo, benchmark và phần thực nghiệm liên quan.
+
+### Bằng chứng
+
+- `src/reports/benchmark.json`: workflow, single và orchestrator đạt 70/70 trial pass; swarm đạt 69/70.
+- Tài liệu tổng hợp: `report/team/group_report.md`, `report/team/decision_adr.md`, `report/team/research_card.md`; phần thực nghiệm và kiểm thử được hỗ trợ bởi Codex, kết quả đối chiếu với file JSON do công cụ sinh ra.

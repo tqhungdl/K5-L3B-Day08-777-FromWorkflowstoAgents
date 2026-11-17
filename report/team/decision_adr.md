@@ -3,8 +3,8 @@
 Điền sau dấu `:` trên cùng dòng, không xóa nhãn. Giảng viên và `python -m lab8.check_submission` (chạy trong `src/`) đọc các dòng này bằng máy. Không đổi tên hay dời file này khỏi `report/team/`.
 `Shape chọn` phải là đúng một trong: `workflow`, `single`, `orchestrator`, `swarm`. Đây là shape được chấm cổng hidden.
 
-- Shape chọn: Shape A - Workflow
-- Commit hash: b389b75
+- Shape chọn: workflow
+- Commit hash: a5c93e4
 - Run id dẫn chứng: R-workflow-C-001-s11 (src/reports/benchmark.json)
 - Pass rate / pass^5 / seed min-max / variance: 1.000 / 1.000 / 1.000 - 1.000 / 0.000
 - Cost per success (mô phỏng, VND): 27.86 VND
