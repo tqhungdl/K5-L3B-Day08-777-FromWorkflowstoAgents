@@ -5,7 +5,7 @@
 - Tên nhóm: 777
 - Lớp: L3B
 - Repo nhóm: `K5-L3B-Day08-777-FromWorkflowstoAgents` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt: https://github.com/tqhungdl/K5-L3B-Day08-777-FromWorkflowstoAgents, nhánh `main`, commit chốt:
+- URL repo, nhánh nộp, commit chốt: https://github.com/tqhungdl/K5-L3B-Day08-777-FromWorkflowstoAgents, nhánh `main`, commit chốt: `7c8fc8a`
 
 ## Thành viên
 
