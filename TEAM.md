@@ -12,7 +12,9 @@
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
 |   1 | Nguyễn Thành Nam | 2A202603934 |       | Ishodayo | Orchestrator + handoff (shape C) |
-|   2 |        |      |       |        |         |
+|   2 | Nguyễn Tiến Đạt | 2A202603752 |       | chesschillchill | Workflow (shape A) + kiểm tra an toàn |
+|   3 | Đặng Nhật Huy | 2A202603822 | 26ai.huydn@vinuni.edu.vn | huydn8816 | Single agent (shape B) + test |
+|   4 | Trần Quang Hưng | 2A202603767 |       | tqhungdl | Tổng hợp báo cáo, phân tích benchmark, decision ADR |
 
 Gợi ý chia vai:
 
@@ -40,6 +42,20 @@ Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 Sao chép mục dưới đây cho từng thành viên.
 
 ## MSSV_HoTen
+
+### Phần việc phụ trách
+
+-
+
+### Đóng góp cụ thể
+
+-
+
+### Bằng chứng
+
+-
+
+## 2A202603767_Trần Quang Hưng
 
 ### Phần việc phụ trách
 
