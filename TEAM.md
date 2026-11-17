@@ -11,7 +11,7 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Nguyễn Thành Nam | 2A202603934 |       | Ishodayo | Orchestrator + handoff (shape C) |
+|   1 | Nguyễn Thành Nam | 2A202603934 | ishodajo@gmail.com | Ishodayo | Orchestrator + handoff (shape C) |
 |   2 | Nguyễn Tiến Đạt | 2A202603752 |       | chesschillchill | Workflow (shape A) + kiểm tra an toàn |
 |   3 | Đặng Nhật Huy | 2A202603822 | 26ai.huydn@vinuni.edu.vn | huydn8816 | Single agent (shape B) + test |
 |   4 | Trần Quang Hưng | 2A202603767 |       | tqhungdl | Tổng hợp báo cáo, phân tích benchmark, decision ADR |
@@ -54,6 +54,23 @@ Sao chép mục dưới đây cho từng thành viên.
 ### Bằng chứng
 
 -
+
+## 2A202603934_NguyenThanhNam
+
+### Phần việc phụ trách
+
+- Shape C `orchestrator` (orchestrator + investigator chỉ đọc) trong `src/lab8/shapes/orchestrator.py`, handoff giữa hai tầng và trace an toàn của shape C.
+
+### Đóng góp cụ thể
+
+- `5be3a3a`: viết `orchestrator.py`. Orchestrator đọc claim qua `get_claim_view`, dựng handoff bằng `make_handoff` (`facts` rỗng, chỉ tool đọc), investigator chạy qua `run_readonly_investigators`, tiền do `compute_compensation` tính, chỉ orchestrator gọi `durability.issue_refund` với quote đầy đủ và `crash_at`.
+- `66a5efa`: thêm `src/tests/test_orchestrator_boundary.py` (24 test): cổng approval (thiếu, thu hồi, hết hạn, mượn của claim khác), sai principal, ticket injection, handoff chỉ có tool đọc, trace không lộ secret/PII trên 14 claim public, crash ở 3 điểm rồi chạy lại vẫn một refund.
+
+### Bằng chứng
+
+- `python -m pytest -q -m student -o addopts= -k orchestrator` → 62 passed.
+- `python -m pytest -q tests/test_orchestrator_boundary.py` → 24 passed.
+- Báo cáo cá nhân: `report/team/2A202603934_NguyenThanhNam.md`; phần nhóm: mục *Shape C - Orchestrator* trong `report/team/group_report.md`.
 
 ## 2A202603767_Trần Quang Hưng
 

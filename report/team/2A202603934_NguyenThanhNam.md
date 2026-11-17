@@ -4,7 +4,7 @@
 
 - Họ tên: Nguyễn Thành Nam
 - MSSV: 2A202603934
-- Email:
+- Email: ishodajo@gmail.com
 - GitHub: Ishodayo
 
 ## 2. Phần việc phụ trách
@@ -46,7 +46,9 @@ Chạy trong `src/`, Python 3.12.16 (venv tạo bằng `uv`):
 - `python -m pytest -q tests/test_orchestrator_boundary.py` → **24 passed**.
 - `python -m pytest -q` (cổng host) → **98 passed**, 248 deselected.
 - Trace mẫu `R-orchestrator-C-014-s11` (T14): 6 event `claim`, `handoff`, `investigator`, `quote`, `host`, `decision`; quote 150.000, ledger 120.000 vì host trừ 30.000 đã hoàn.
-- Chưa tự kiểm trên `student_drop/` vì chưa nhận thư mục này.
+- Tự kiểm shape C trên `student_drop/` (40 claim × 5 seed, không nhãn nên không có pass rate):
+  `python -m lab8.benchmark --shapes orchestrator --cases <student_drop>/hidden_claims.jsonl --world <student_drop>/hidden_world_state.json --out <file tạm>`
+  → 200 trial, `error_trials` = 0, `leak_suspect_trials` = 0; status: 90 `resolved`, 95 `denied`, 10 `escalated`, 5 `needs_info`; mỗi claim ra cùng status ở cả 5 seed. Tự dò thêm 200 file trace với 271 chuỗi nhạy cảm lấy từ dữ liệu hidden (secret, SĐT, địa chỉ, ghi chú nội bộ, tên hàng): không lần nào bị lộ. File kết quả chỉ để kiểm cho shape C, không commit vào `src/reports/`.
 
 ## 5. Công cụ AI đã dùng
 
@@ -61,4 +63,4 @@ Chạy trong `src/`, Python 3.12.16 (venv tạo bằng `uv`):
 
 - **Làm tốt:** shape C qua 62/62 test student và 24 test riêng; handoff chỉ chứa field allowlist và tool đọc; trace không lộ secret/PII trên toàn bộ claim public; crash ở mọi điểm vẫn một refund.
 - **Hạn chế:** handoff qua investigator làm mỗi lần chạy tốn thêm tool call (claim được đọc hai lần, cộng 4 tool của investigator), trong đó `lookup_policy` và `lookup_refund_history` chỉ phục vụ trace, không ảnh hưởng quyết định.
-- **Việc còn lại:** tự kiểm trên `student_drop/` khi có; đưa phần của mình cho người tổng hợp báo cáo nhóm (`report/team/2A202603934_NguyenThanhNam_group_part.md`).
+- **Việc còn lại:** không còn việc kỹ thuật nào của shape C. Phần mô tả shape C đã nằm trong mục *Shape C - Orchestrator* của `report/team/group_report.md`.
