@@ -11,7 +11,7 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 |        |      |       |        |         |
+|   1 | Nguyễn Thành Nam | 2A202603934 |       | Ishodayo | Orchestrator + handoff (shape C) |
 |   2 |        |      |       |        |         |
 
 Gợi ý chia vai:
